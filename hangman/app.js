@@ -1,4 +1,5 @@
 const HangmanGame = {
+    // game variables
     started: false,
     wordList: ['one', 'two','three','four'],
     wordsGuessed: [],
@@ -9,6 +10,7 @@ const HangmanGame = {
     wins: 0,
     losses: 0,
     
+    // sets up the initial game values.
     Start: function () {
         this.started = true;
         this.ChooseWord();
@@ -17,18 +19,28 @@ const HangmanGame = {
         console.log(this);
     },
 
-
+    // selects a word at random from the word list and sets it to the currentWorld value.
     ChooseWord: function () {
         this.currentWord = this.wordList[Math.floor(Math.random()*this.wordList.length)];
-        console.log(this.currentWord);
+        console.log(this.currentWord); // used for easy testing
     },
 
+    // takes in a letter (string) and checks if it exists in the currentWord.
     CheckGuess: function (letter) {
-        if (this.currentWord.indexOf(letter) > -1) {
-            this.FillInBlanks(letter);
-        } else {
-            this.guessesLeft --;
+        if(this.lettersGuessed.indexOf(letter) > -1){
+            console.log('letter already guessed');
+
+        }else{
+            this.lettersGuessed.push(letter);
+
+            if (this.currentWord.indexOf(letter) > -1) {
+            
+                this.FillInBlanks(letter);
+            } else {
+                this.guessesLeft --;
+            }
         }
+        
         this.RenderGameState();
     },
 
@@ -41,7 +53,7 @@ const HangmanGame = {
         document.querySelector('#guessesLeft').innerText = this.guessesLeft;
         document.querySelector('#wins').innerText = this.wins;
         document.querySelector('#losses').innerText = this.losses;
-        document.querySelector('#lettersGuessed').innerText = this.lettersGuessed;
+        document.querySelector('#lettersGuessed').innerText = this.lettersGuessed.join(' ');
     },
 
     CreateBlanks: function () {
