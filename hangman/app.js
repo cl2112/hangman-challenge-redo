@@ -2,7 +2,7 @@ const HangmanGame = {
     // game variables
     state: {
         started: false,
-        wordList: ["one", "two", "three", "four"],
+        wordList: ["one", "two", "three", "four", "five", "six", "seven"],
         wordsGuessed: [],
         currentWord: "",
         blankWord: "",
